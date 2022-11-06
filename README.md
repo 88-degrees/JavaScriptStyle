@@ -2096,11 +2096,13 @@ Other Style Guides
     const foo = a ? a : b;
     const bar = c ? true : false;
     const baz = c ? false : true;
+    const quux = a != null ? a : b;
 
     // good
     const foo = a || b;
     const bar = !!c;
     const baz = !c;
+    const quux = a ?? b;
     ```
 
   <a name="comparison--no-mixed-operators"></a>
@@ -2607,7 +2609,7 @@ Other Style Guides
     // bad
     const leds = stage.selectAll('.led').data(data).enter().append('svg:svg').classed('led', true)
         .attr('width', (radius + margin) * 2).append('svg:g')
-        .attr('transform', `translate(${radius + margin},${radius + margin})`)
+        .attr('transform', `translate(${radius + margin}, ${radius + margin})`)
         .call(tron.led);
 
     // good
@@ -2617,7 +2619,7 @@ Other Style Guides
         .classed('led', true)
         .attr('width', (radius + margin) * 2)
       .append('svg:g')
-        .attr('transform', `translate(${radius + margin},${radius + margin})`)
+        .attr('transform', `translate(${radius + margin}, ${radius + margin})`)
         .call(tron.led);
 
     // good
@@ -2625,7 +2627,7 @@ Other Style Guides
     const svg = leds.enter().append('svg:svg');
     svg.classed('led', true).attr('width', (radius + margin) * 2);
     const g = svg.append('svg:g');
-    g.attr('transform', `translate(${radius + margin},${radius + margin})`).call(tron.led);
+    g.attr('transform', `translate(${radius + margin}, ${radius + margin})`).call(tron.led);
     ```
 
   <a name="whitespace--after-blocks"></a><a name="18.7"></a>
@@ -2700,7 +2702,7 @@ Other Style Guides
     // bad
     if (baz) {
 
-      console.log(qux);
+      console.log(quux);
     } else {
       console.log(foo);
 
@@ -2721,7 +2723,7 @@ Other Style Guides
 
     // good
     if (baz) {
-      console.log(qux);
+      console.log(quux);
     } else {
       console.log(foo);
     }
@@ -2849,6 +2851,14 @@ Other Style Guides
       && jsonData.foo.bar.baz
       && jsonData.foo.bar.baz.quux
       && jsonData.foo.bar.baz.quux.xyzzy;
+
+    // better
+    const foo = jsonData
+      ?.foo
+      ?.bar
+      ?.baz
+      ?.quux
+      ?.xyzzy;
 
     // good
     $.ajax({
@@ -3131,7 +3141,7 @@ Other Style Guides
     });
 
     // good
-    const reaction = "No! That’s impossible!";
+    const reaction = 'No! That’s impossible!';
     (async function meanwhileOnTheFalcon() {
       // handle `leia`, `lando`, `chewie`, `r2`, `c3p0`
       // ...
@@ -3471,7 +3481,7 @@ Other Style Guides
 
     // good
     export const MAPPING = {
-      key: 'value'
+      key: 'value',
     };
     ```
 
@@ -3739,7 +3749,7 @@ Other Style Guides
     - Be cautious about stubs and mocks - they can make your tests more brittle.
     - We primarily use [`mocha`](https://www.npmjs.com/package/mocha) and [`jest`](https://www.npmjs.com/package/jest) at Airbnb. [`tape`](https://www.npmjs.com/package/tape) is also used occasionally for small, separate modules.
     - 100% test coverage is a good goal to strive for, even if it’s not always practical to reach it.
-    - Whenever you fix a bug, _write a regression test_. A bug fixed without a regression test is almost certainly going to break again in the future.
+    - Whenever you fix a bug, *write a regression test*. A bug fixed without a regression test is almost certainly going to break again in the future.
 
 **[⬆ back to top](#table-of-contents)**
 
